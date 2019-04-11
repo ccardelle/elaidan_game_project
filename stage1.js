@@ -5,31 +5,35 @@ class Stage1 extends Phaser.Scene {
   preload () {
       
 
-      this.load.image('sky', 'assets/sky.png')
-      this.load.audio('theme', ['assets/songs/trillion - intro.wav']);
+      this.load.image('stage1', 'assets/sky.png')
+      this.load.audio('stage1song', ['assets/songs/Mode - Easy.mp3']);
       
   }
 
 
   create () {
-      var bg = this.add.image(400, 300, 'sky');
-      bg.displayWidth = 800;
-      bg.displayHeight = 600;
+      
+    var newBg = this.add.image(400, 300, 'stage1');
+    newBg.displayWidth = 800;
+    newBg.displayHeight = 600;
       
 
       this.add.text(200, 200, 'TITLE TEXT', { font: '60px' , fill: '#00ff00' });
 
       this.add.text(150, 300, 'FIRST SONG - (EASY)', { font: '40px', fill: '#00ff00' });
-      var music = this.sound.add('theme');
       
       
+      //Stage1  Music
+      var music = this.sound.add('stage1song');
+      music.volume = .2;
+      music.play();
 
       
       
 
       
 
-      //music.play();
+      
   }
 
   update () {

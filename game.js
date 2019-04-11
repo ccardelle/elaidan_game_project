@@ -8,7 +8,7 @@
             gravtiy: {y: 200}
         }
      },
-     scene: [Menu]
+     scene: [Menu, Stage1]
     };
 
 var game = new Phaser.Game(config);
