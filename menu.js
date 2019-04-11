@@ -18,6 +18,7 @@ class Menu extends Phaser.Scene {
         bg.displayWidth = 800;
         bg.displayHeight = 600;
         
+        
         hsv = Phaser.Display.Color.HSVColorWheel();
 
         //  Title Text
@@ -41,6 +42,8 @@ class Menu extends Phaser.Scene {
             'y': 480
             
         });
+
+
         button.setInteractive().on('pointerdown', this.onDown, button)
         button.setInteractive().on('pointerup', this.onUp, button)
         
