@@ -5,7 +5,7 @@
      physics: {
         default: 'arcade',
         arcade: {
-            gravtiy: {y: 200}
+            gravtiy: {x : 0, y: 0}
         }
      },
      scene: [Menu, Stage1]

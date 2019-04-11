@@ -33,9 +33,6 @@ class Stage1 extends Phaser.Scene {
     
 
 
-    //this.add.text(200, 200, 'TITLE TEXT', { font: '60px' , fill: '#00ff00' });
-
-    //this.add.text(150, 300, 'FIRST SONG - (EASY)', { font: '40px', fill: '#00ff00' });
     
     
 
@@ -48,8 +45,8 @@ class Stage1 extends Phaser.Scene {
 
 
 
-  // Ground
-  platforms = this.physics.add.staticGroup();
+    // Ground
+    platforms = this.physics.add.staticGroup();
 
     platforms.create(250, 825, 'ground').setScale(3.3).refreshBody();
 
@@ -60,6 +57,7 @@ class Stage1 extends Phaser.Scene {
     player1.setScale('1.8');
     player1.setBounce(0.2);
     player1.setCollideWorldBounds(true);
+
 
     this.anims.create({
         key: 'left',
@@ -81,18 +79,43 @@ class Stage1 extends Phaser.Scene {
         repeat: -1
     });
      
-    player1.body.setGravity(300);
+    player1.body.setGravity(0);
+
 
     // Sawblade object
-    sawBlade = this.add.sprite(400, 575, 'sawblade');
+   sawBlade = this.physics.add.group({
+     key: 'sawblade',
+     repeat: 0,
+     setXY: { x: 50, y: 550, stepX: 80 },
+   });
+
+   setInterval(function () {sawBlade.create(Math.floor(Math.random() * 800), 250, 'sawblade')}, 500);
+
+
+      sawBlade.children.iterate(function (child) {
+        
+       child.setBounceY(3);
+       child.setGravity(300);
+       child.setCollideWorldBounds(true);
+
+      
+     });
+    
+    
+    this.physics.add.collider(sawBlade, platforms);
+    this.physics.add.overlap(player1, sawBlade, collectSaw, null, this);
+
 
           
 
           
   }
+  
 
   update () {
 
+
+    // Controls
     cursors = this.input.keyboard.createCursorKeys();
 
     if (cursors.left.isDown)
@@ -148,3 +171,8 @@ var player1;
 var platforms;
 var bgBuildings2;
 var bgBuildings1;
+
+function collectSaw (player1, sawBlade)
+{
+    sawBlade.disableBody(true, true);
+}
