@@ -57,7 +57,8 @@ class Stage1 extends Phaser.Scene {
     player1.setScale('1.8');
     player1.setBounce(0.2);
     player1.setCollideWorldBounds(true);
-    player1.body.setGravity(20);
+    player1.body.setGravity(0, 1200);
+    
     
 
 
@@ -81,41 +82,74 @@ class Stage1 extends Phaser.Scene {
         repeat: -1
     });
      
-    
-
 
   
   
         
-    setInterval(function () {sawBlade.create(Math.floor(Math.random() * 350), Math.floor(Math.random() * 350), 'sawblade', )}, 916);
+    //setInterval(function () {sawBlade.create(Math.floor(Math.random() * 800), Math.floor(Math.random() * 400), 'sawblade', )}, 916);
 
      //Sawblade object
-     sawBlade = this.physics.add.group({
-      key: 'sawblade',
-      repeat: 0,
-      setXY: { x: 0, y: 600, stepX: 0 },
+    //  sawBlade = this.physics.add.group({
+    //   key: 'sawblade',
+    //   repeat: 0,
+    //   setXY: { x: 0, y: 600, stepX: 0 },
       
-    });
+    // });
  
-    //setInterval(function () {sawBlade.create(Math.floor(Math.random() * 800), 250, 'sawblade')}, 457);
+    // //setInterval(function () {sawBlade.create(Math.floor(Math.random() * 800), 250, 'sawblade')}, 457);
     
  
  
-       sawBlade.children.iterate(function (child) {
+    //    sawBlade.children.iterate(function (child) {
          
-        child.setCollideWorldBounds(true);
-        child.setVelocityX(160);
+    //     child.setCollideWorldBounds(true);
+    //     child.setVelocityX(160);
        
-      });
+    //   });
      
      
-     this.physics.add.collider(sawBlade, platforms);
-     this.physics.add.overlap(player1, sawBlade, collectSaw, null, this);
-     this.physics.add.collider(player1, platforms);
- 
-     }
-  
+// Collisions
 
+     //this.physics.add.collider(sawBlade, platforms);
+     //this.physics.add.overlap(player1, sawBlade, collectSaw, null, this);
+
+     
+     this.physics.add.collider(player1, platforms, function(e){
+       onGround = true; 
+     });
+
+      // NEW PATHING SYSTEM
+      graphics = this.add.graphics();
+
+      follower = { t: 0, vec: new Phaser.Math.Vector2() };
+
+      //  The curves do not have to be joined
+      var line1 = new Phaser.Curves.Line([ 0, 550, 800, 550 ]);
+      //var line2 = new Phaser.Curves.Line([ 200, 300, 600, 500 ]);
+
+      path = this.add.path();
+
+      path = new Phaser.Curves.Path();
+
+      path.add(line1);
+      //path.add(line2);
+
+      this.tweens.add({
+          targets: follower,
+          t: 1,
+          ease: 'Linear',
+          duration: 462,
+          yoyo: true,
+          repeat: -1
+      });
+
+
+
+      
+ 
+}
+  
+ 
   update () {
 
 
@@ -134,7 +168,14 @@ class Stage1 extends Phaser.Scene {
 
       player1.anims.play('right', true);
     }
-        
+    else if (cursors.up.isDown)
+    {
+      if(onGround){
+        player1.setVelocityY(-350);
+        player1.anims.play('right', true);
+      }
+      onGround = false; 
+    }
     else
     {
       player1.setVelocityX(0);
@@ -144,21 +185,53 @@ class Stage1 extends Phaser.Scene {
 
     
     
+  
+    graphics.clear();
+    graphics.lineStyle(2, 0xffffff, 1);
+
+    //path.draw(graphics);
+
+    path.getPoint(follower.t, follower.vec);
+
+    colorFill = graphics.fillStyle(0xcf1692, 1);
+    metroNote = graphics.fillRect(follower.vec.x - 8, follower.vec.y - 8, 24, 24);
+    zoneTriangle1 = graphics.fillRect(0, 500, 24, 100);
+    zoneTriangle2 = graphics.fillRect(776, 500, 24, 100);
+    
+      
   }
 
-  
+    
+    
+
+
 }
 
 
 
+
+let onGround = true; 
+
 var cursors;
 var sawBlade;
+var sawBlade2;
 var player1;
 var platforms;
 var bgBuildings2;
 var bgBuildings1;
 
+
+var follower;
+var path;
+var graphics;
+var zoneTriangle1;
+var zoneTriangle2;
+var metroNote;
+var colorFill;
+
 function collectSaw (player1, sawBlade)
 {
     sawBlade.disableBody(true, true);
 }
+
+  

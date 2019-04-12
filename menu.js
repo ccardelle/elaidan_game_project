@@ -55,8 +55,8 @@ class Menu extends Phaser.Scene {
         menuSong.volume = .2;
         
         //menuSong.play();
-        var songStart = setInterval(menuSong.play(), 457);
-        clearInterval(songStart);
+        var songStart = setTimeout(menuSong.play(), 457);
+        //clearInterval(songStart);
         
 
     }
@@ -116,6 +116,7 @@ var title;
 var buttonText;
 var button;
 var menuSong;
+
 
 function titleDance () {
 
