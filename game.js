@@ -3,9 +3,14 @@
      width:800,
      height:600,
      physics: {
+         body: {
+             velocity : 0,
+         },
         default: 'arcade',
         arcade: {
-            gravtiy: {x : 0, y: 0}
+            gravtiy: {x : -1000, y: 0},
+            drawDebug : true,
+            debug: false,
         }
      },
      scene: [Menu, Stage1]

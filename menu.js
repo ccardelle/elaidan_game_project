@@ -53,8 +53,10 @@ class Menu extends Phaser.Scene {
         //Menu  Music
         menuSong = this.sound.add('theme');
         menuSong.volume = .2;
-        menuSong.play();
-
+        
+        //menuSong.play();
+        var songStart = setInterval(menuSong.play(), 457);
+        clearInterval(songStart);
         
 
     }
@@ -96,10 +98,16 @@ class Menu extends Phaser.Scene {
         
         
     }
-    
+
     
 
 } 
+
+var bump = setInterval(titleDance, 457.8);
+//clearInterval(bump);
+
+
+
 
 
 var hsv;
@@ -109,3 +117,14 @@ var buttonText;
 var button;
 var menuSong;
 
+function titleDance () {
+
+    setTimeout(function(){title.setScale(1.3); title.setX(65)}, 0);
+    setTimeout(function(){title.setScale(1.2); title.setX(85)}, 50);
+    setTimeout(function(){title.setScale(1.15); title.setX(95)}, 100);
+    setTimeout(function(){title.setScale(1.1); title.setX(120)}, 125);
+    setTimeout(function(){title.setScale(1); title.setX(140)}, 150);
+    
+
+    
+    }
