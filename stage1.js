@@ -11,29 +11,51 @@ class Stage1 extends Phaser.Scene {
       this.load.spritesheet('sawblade', 'assets/saw_blade.png',{frameWidth: 32, frameHeight: 32});
       this.load.spritesheet('player1sprite' , 'assets/blue.png',{frameWidth: 16, frameHeight: 16});
       this.load.spritesheet('ground' , 'assets/tiles.png',{frameWidth: 400, frameHeight: 200});
-
+      this.load.image('spark', 'assets/fire.png');
   }
 
 
   create () {
-      
+
+    //Creates score timer
+
+    var scoreSystem = setInterval(function () {scoreTime += 5}, 461);
+    
+
     var newBg = this.add.sprite(400, 300, 'stage1');
     newBg.displayWidth = 800;
     newBg.displayHeight = 600;
     
+    //particles test
+
+    // var particles = this.add.particles('spark');
+
+    // var emitter = particles.createEmitter();
+
+    // emitter.setPosition(fX, -10);
+    // emitter.setSpeed(100);
+    // emitter.setBlendMode(Phaser.BlendModes.ADD);
+
     bgBuildings2 = this.add.image(300 ,300, 'buildings');
     bgBuildings2.setScale(1);
     bgBuildings2.setTint(1);
     
 
-    bgBuildings1 = this.add.image(350 ,300, 'buildings');
+    bgBuildings1 = this.add.image(350 ,310, 'buildings');
     bgBuildings1.setScale(1.7);
     
-    
-    
+    // Health Bar Base
+    healthBarBase = this.add.graphics();
+    healthBarBase.fillStyle(0x000000, 1);
+    healthBarBase.fillRect(10, 10, 250, 24);
+   
+    //Actual Health Bar
+    healthBar = this.add.graphics();
+    healthBar.fillStyle(0x7CFC00, 1);
+    //healthBar.fillRect(10, 10, healthWidth, 24);
 
 
-    
+  
     
 
     //Stage1  Music
@@ -123,7 +145,7 @@ class Stage1 extends Phaser.Scene {
 
       follower = { t: 0, vec: new Phaser.Math.Vector2() };
 
-      //  The curves do not have to be joined
+      
       var line1 = new Phaser.Curves.Line([ 0, 550, 800, 550 ]);
       //var line2 = new Phaser.Curves.Line([ 200, 300, 600, 500 ]);
 
@@ -138,12 +160,14 @@ class Stage1 extends Phaser.Scene {
           targets: follower,
           t: 1,
           ease: 'Linear',
-          duration: 462,
+          duration: 461.5,
           yoyo: true,
           repeat: -1
       });
-
-
+      
+      // Creates base score display
+      scoreTitle = this.add.text(650, 10, `Score: ${scoreTime}`, { fontSize: '24px', fontFamily: 'font1', fill: "#fff" });
+      
 
       
  
@@ -171,8 +195,10 @@ class Stage1 extends Phaser.Scene {
     else if (cursors.up.isDown)
     {
       if(onGround){
-        player1.setVelocityY(-350);
+        player1.setVelocityY(-450);
         player1.anims.play('right', true);
+        healthBar.clear();
+        healthWidth -= 10;
       }
       onGround = false; 
     }
@@ -185,7 +211,7 @@ class Stage1 extends Phaser.Scene {
 
     
     
-  
+    // Rectangle graphics
     graphics.clear();
     graphics.lineStyle(2, 0xffffff, 1);
 
@@ -198,10 +224,15 @@ class Stage1 extends Phaser.Scene {
     zoneTriangle1 = graphics.fillRect(0, 500, 24, 100);
     zoneTriangle2 = graphics.fillRect(776, 500, 24, 100);
     
-      
-  }
-
     
+    // Updates score
+    scoreTitle.text = `Score: ${scoreTime}`;
+    
+    //Updates Health
+    healthBar.fillRect(10, 10, healthWidth, 24);
+  } 
+
+  
     
 
 
@@ -219,6 +250,8 @@ var player1;
 var platforms;
 var bgBuildings2;
 var bgBuildings1;
+var scoreTitle;
+var scoreTime = 0;
 
 
 var follower;
@@ -228,6 +261,12 @@ var zoneTriangle1;
 var zoneTriangle2;
 var metroNote;
 var colorFill;
+
+
+var healthBarBase;
+var healthBar;
+var healthWidth = 250;
+var healthBarSystem;
 
 function collectSaw (player1, sawBlade)
 {

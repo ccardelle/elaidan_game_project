@@ -31,7 +31,7 @@ class Menu extends Phaser.Scene {
 
         
 
-        //Button
+        // Button
         button = new BasicButton({
             'scene': this,
             'key':'buttons',
@@ -75,7 +75,7 @@ class Menu extends Phaser.Scene {
         buttonText.setY('380');
         game.scene.start('Stage1');
         menuSong.stop();
-
+        game.scene.stop("Menu");
     }    
     
     
