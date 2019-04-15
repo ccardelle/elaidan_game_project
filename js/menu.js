@@ -75,7 +75,7 @@ class Menu extends Phaser.Scene {
         buttonText.setY('380');
         game.scene.start('Stage1');
         menuSong.stop();
-        game.scene.stop("Menu");
+        game.scene.stop('Menu');
     }    
     
     
