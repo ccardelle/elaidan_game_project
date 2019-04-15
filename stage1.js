@@ -59,9 +59,9 @@ class Stage1 extends Phaser.Scene {
     
 
     //Stage1  Music
-    var music = this.sound.add('stage1song');
-    music.volume = .2;
-    music.play();
+    stage1song = this.sound.add('stage1song');
+    stage1song.volume = .2;
+    stage1song.play();
 
     
 
@@ -198,7 +198,7 @@ class Stage1 extends Phaser.Scene {
         player1.setVelocityY(-450);
         player1.anims.play('right', true);
         healthBar.clear();
-        healthWidth -= 10;
+        healthWidth -= 100;
       }
       onGround = false; 
     }
@@ -230,6 +230,15 @@ class Stage1 extends Phaser.Scene {
     
     //Updates Health
     healthBar.fillRect(10, 10, healthWidth, 24);
+
+
+
+    if (healthWidth <= 0) {
+      stage1song.stop();
+      game.scene.start("Menu");
+      game.scene.stop("Stage1");
+      
+    }
   } 
 
   
@@ -242,7 +251,7 @@ class Stage1 extends Phaser.Scene {
 
 
 let onGround = true; 
-
+var stage1song;
 var cursors;
 var sawBlade;
 var sawBlade2;
