@@ -165,6 +165,7 @@ class Stage1 extends Phaser.Scene {
           repeat: -1
       });
       
+      
       // Creates base score display
       scoreTitle = this.add.text(650, 10, `Score: ${scoreTime}`, { fontSize: '24px', fontFamily: 'font1', fill: "#fff" });
       
