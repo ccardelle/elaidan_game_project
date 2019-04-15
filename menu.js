@@ -5,9 +5,9 @@ class Menu extends Phaser.Scene {
     preload () {
         
 
-        this.load.image('sky', 'assets/bgfixed.gif')
-        this.load.audio('theme', ['assets/songs/trillion - intro.wav']);
-        this.load.spritesheet('buttons', 'assets/buttons/flixel-button.png',{frameWidth:80, frameHeight: 20});
+        this.load.image('sky', './assets/bgfixed.gif')
+        this.load.audio('theme', ['./assets/songs/trillion - intro.wav']);
+        this.load.spritesheet('buttons', './assets/buttons/flixel-button.png',{frameWidth:80, frameHeight: 20});
         
     }
 
