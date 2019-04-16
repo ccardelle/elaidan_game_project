@@ -6,7 +6,7 @@ class Menu extends Phaser.Scene {
         
 
         this.load.image('sky', 'assets/bgfixed.gif')
-        this.load.audio('theme', ['assets/songs/trillion_intro.wav']);
+        this.load.audio('theme', ['assets/songs/trillion_intro.mp3']);
         this.load.spritesheet('buttons', 'assets/buttons/flixel-button.png',{frameWidth:80, frameHeight: 20});
         
     }
