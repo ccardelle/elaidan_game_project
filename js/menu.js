@@ -42,10 +42,10 @@ class Menu extends Phaser.Scene {
             'y': 480
             
         });
+let _this = this;
 
-
-        button.setInteractive().on('pointerdown', this.onDown, button)
-        button.setInteractive().on('pointerup', this.onUp, button)
+        button.setInteractive().on('pointerdown', this.onDown)
+        button.setInteractive().on('pointerup', () => {this.onUp(_this)})
         
         //Button Text
         buttonText = this.add.text(349, 380, 'Start', { font: "36px Arial Black", fill: "#000000" });
@@ -68,14 +68,14 @@ class Menu extends Phaser.Scene {
         buttonText.setY('382');
     }
         
-    onUp () {
+    onUp (_this) {
         button.setScale('2');
         buttonText.setScale('1');
         buttonText.setX('349');
         buttonText.setY('380');
-        game.scene.start('Stage1');
+        this.scene.switch('Stage1');
         menuSong.stop();
-        game.scene.stop('Menu');
+        // game.scene.stop('Menu');
     }    
     
     

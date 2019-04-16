@@ -26,27 +26,56 @@
             margin: 20vh 25%;
             align-self: center;
             border: 10px black solid;
-            
+            order:0;
              }
+
+        .instructions {
+            display: flex;
+            justify-content: center;
+            align-content: space-between;
+            order: 2;
+            color:cyan;
+            
+
+        }
+
+        .list li {
+            display: flex;
+            display:inline;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: cyan;
+            flex-direction: row;
+            font-style: italic;
+            align-content: space-between;
+            padding-right: 20px;
+
+        }
   </style>
   
-    <script type="text/javascript" src="./js/phaser.min.js"></script>
+    <script type="text/javascript" src="/js/phaser.min.js"></script>
 </head>
 <body>
     
 <div style="font-family:font1; position:absolute; left:-1000px; visibility:hidden;">.</div>
-<div>
-    
 
-
-</div>
 
     <script type="text/javascript" src="./js/stage1.js"></script>
     <script type="text/javascript" src="./js/BasicButton.js"></script>
     <script type="text/javascript" src="./js/menu.js"></script>
     <script type="text/javascript" src="./js/game.js"></script>
     
+    <div class="instructions">
+        <h3>HOW TO PLAY</h3>
+        <section> <ul class="list">
+            <li> Move by using the arrow keys.</li>
+            <li> Avoid falling enemies, they hurt.</li>
+            <li> Hitting [space] triggers a heal if timed to the beat </li>
+            
+
+        </ul></section>
     
+    
+    </div>
     
 </body>
 </html>

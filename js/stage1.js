@@ -2,6 +2,8 @@ class Stage1 extends Phaser.Scene {
   constructor() {
       super ({key:"Stage1"});
   }
+
+
   preload () {
       
 
@@ -16,12 +18,18 @@ class Stage1 extends Phaser.Scene {
 
 
   create () {
+    
+    
+    
+    scoreTime = 0;
+    healthWidth = 250;
+    zoneColor = 0;
 
     //Creates score timer
 
-    var scoreSystem = setInterval(function () {scoreTime += 5}, 461.5);
-    var beatTimeColor = setInterval(function() {zoneColor = 0x7CFC00; setTimeout(function (){zoneColor = 0xcf1692}, 100)}, 461.5 );
-    //var beatTimeColorReset = setInterval(function() {zoneColor = 0xcf1692}, 481 );
+    scoreSystem = setInterval(function () {scoreTime += 5}, 461);
+    beatTimeColor = setInterval(function() {zoneColor = 0x7CFC00; setTimeout(function (){zoneColor = 0xcf1692}, 250)}, 461 );
+    
 
     var newBg = this.add.sprite(400, 300, 'stage1');
     newBg.displayWidth = 800;
@@ -62,7 +70,7 @@ class Stage1 extends Phaser.Scene {
     //Stage1  Music
     stage1song = this.sound.add('stage1song');
     stage1song.volume = .2;
-    stage1song.play();
+    setTimeout(function() {stage1song.play()}, 461.5);
 
     
 
@@ -139,7 +147,7 @@ class Stage1 extends Phaser.Scene {
             
       
      mySlime1 = slimes.create(500, 250, 'gello');
-     mySlime1.body.gravity.y = 400;
+     mySlime1.body.setGravity(-100,400);
      mySlime1.body.bounce.y = .8;
      mySlime1.body.collideWorldBounds = true;
      mySlime1.anims.play('idle', true);
@@ -149,7 +157,7 @@ class Stage1 extends Phaser.Scene {
      mySlime1.syncBounds = true;
 
      mySlime2 = slimes.create(500, 250, 'gello');
-     mySlime2.body.gravity.y = 400;
+     mySlime2.body.setGravity(-100,400);
      mySlime2.body.bounce.y = 1;
      mySlime2.body.collideWorldBounds = true;
      mySlime2.anims.play('idle', true);
@@ -158,7 +166,7 @@ class Stage1 extends Phaser.Scene {
      mySlime2.flipX = true;
 
      mySlime3 = slimes.create(500, 250, 'gello');
-     mySlime3.body.gravity.y = 300;
+     mySlime3.body.setGravity(150,400);
      mySlime3.body.bounce.y = .7;
      mySlime3.body.collideWorldBounds = true;
      mySlime3.anims.play('idle', true);
@@ -167,7 +175,7 @@ class Stage1 extends Phaser.Scene {
      mySlime3.flipX = true;
 
      mySlime4 = slimes.create(500, 250, 'gello');
-     mySlime4.body.gravity.y = 400;
+     mySlime4.body.setGravity(200,400);
      mySlime4.body.bounce.y = .8;
      mySlime4.body.collideWorldBounds = true;
      mySlime4.anims.play('idle', true);
@@ -317,11 +325,14 @@ class Stage1 extends Phaser.Scene {
     
 
 
-
+console.log(healthWidth);
     if (healthWidth <= 0) {
       stage1song.stop();
-      game.scene.stop("Stage1")
-      game.scene.run("Menu");
+      healthWidth = 250;
+      clearInterval(scoreSystem);
+      clearInterval(beatTimeColor);
+      this.scene.stop("Stage1");
+      this.scene.start("Menu");
       ;
       
     }
@@ -388,6 +399,15 @@ class Stage1 extends Phaser.Scene {
     mySlime3.setVelocityX(200);
 
   }
+
+  
+
+  // setInterval(function () {healthWidth -=10; healthBar.clear()}, 2000);
+
+  if (player1.body.y >= 467) {
+    player1.setVelocityY(-450);
+    console.log ("BUMP TEST");
+  }
 }
 
 
@@ -397,6 +417,17 @@ class Stage1 extends Phaser.Scene {
 
 }
 
+
+
+
+
+
+function playerSlimeCollide () {
+  healthBar.clear();
+  setTimeout(healthWidth -= 20, 1000);
+
+  //console.log(healthWidth);
+}
 
 
 
@@ -409,7 +440,7 @@ var bgBuildings2;
 var bgBuildings1;
 var scoreTitle;
 var scoreTime = 0;
-
+var scoreSystem;
 
 var follower;
 var path;
@@ -420,6 +451,7 @@ var metroNote;
 var colorFill;
 
 
+
 var healthBarBase;
 var healthBar;
 var healthWidth = 250;
@@ -427,44 +459,10 @@ var healthBarSystem;
 
 var antiHold = true;
 var zoneColor = 0xcf1692;
+var beatTimeColor;
 
 var slimes;
 var mySlime1;
 var mySlime2;
 var mySlime3;
 var mySlime4;
-
-function playerSlimeCollide () {
-  healthBar.clear();
-  setTimeout(healthWidth -= 20, 1000);
-
-  //console.log(healthWidth);
-}
-
-// function collectSaw (player1, sawBlade)
-// {
-//     sawBlade.disableBody(true, true);
-// }
-
-
-
-// function beatEvade(zoneTriangle1, zoneTriangle2)
-// {
-//   zoneTriangle1.clear ();
-//   zoneTriangle1.fillStyle(0xcf1692, 1);
-//   zoneTriangle1.fillRect(0, 500, 24, 100);
-//   zoneTriangle2.clear ();
-//   zoneTriangle2.fillStyle(0xcf1692, 1);
-//   zoneTriangle2.fillRect(776, 500, 24, 100);
-  
-// }
-// function beatCollide (zoneTriangle1, zoneTriangle2)
-// {
-//   zoneTriangle1.clear ();
-//   //zoneTriangle1.fillStyle(0x7CFC00, 1);
-//   //zoneTriangle1.fillRect(0, 500, 24, 100);
-//   zoneTriangle2.clear ();
-//  // zoneTriangle2.fillStyle(0x7CFC00, 1);
-//   //zoneTriangle2.fillRect(776, 500, 24, 100);
-  
-// }
