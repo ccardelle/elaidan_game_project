@@ -9,7 +9,7 @@ class Stage1 extends Phaser.Scene {
 
       this.load.image('stage1', 'assets/bg-1.png')
       this.load.image( 'buildings', 'assets/bg-3.png')
-      this.load.audio('stage1song', ['assets/songs/Fault - Medium.mp3']);
+      this.load.audio('stage1song', ['assets/songs/fault_medium.mp3']);
       this.load.spritesheet('gello', 'assets/gello.png',{frameWidth: 16, frameHeight: 16});
       this.load.spritesheet('player1sprite' , 'assets/blue.png',{frameWidth: 16, frameHeight: 16});
       this.load.spritesheet('ground' , 'assets/tiles.png',{frameWidth: 400, frameHeight: 200});
