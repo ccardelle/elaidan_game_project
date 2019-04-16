@@ -1,3 +1,40 @@
+var onGround = true; 
+var stage1song;
+var cursors;
+var player1;
+var platforms;
+var bgBuildings2;
+var bgBuildings1;
+var scoreTitle;
+var scoreTime = 0;
+var scoreSystem;
+var finalScore;
+var follower;
+var path;
+var graphics;
+var zoneTriangle1;
+var zoneTriangle2;
+var metroNote;
+var colorFill;
+var pageHighScore = document.getElementsByClassName("hiScoreInt")[0].innerHTML;
+
+
+var healthBarBase;
+var healthBar;
+var healthWidth = 250;
+var healthBarSystem;
+
+var antiHold = true;
+var zoneColor = 0xcf1692;
+var beatTimeColor;
+
+var slimes;
+var mySlime1;
+var mySlime2;
+var mySlime3;
+var mySlime4;
+var mySlime5;
+
 class Stage1 extends Phaser.Scene {
   constructor() {
       super ({key:"Stage1"});
@@ -327,10 +364,16 @@ class Stage1 extends Phaser.Scene {
     if (healthWidth <= 0) {
       stage1song.stop();
       healthWidth = 250;
+      finalScore = scoreTime; 
       clearInterval(scoreSystem);
       clearInterval(beatTimeColor);
+      console.log(finalScore + "HEY");
       this.scene.stop("Stage1");
       this.scene.start("Menu");
+      if (Number(pageHighScore) < Number(finalScore)) {
+        document.getElementsByClassName("hiScoreInt")[0].innerHTML = finalScore;
+        console.log(finalScore);
+      }
       ;
       
     }
@@ -412,7 +455,7 @@ class Stage1 extends Phaser.Scene {
 
   if (player1.body.y >= 467) {
     player1.setVelocityY(-450);
-    console.log ("BUMP TEST");
+    
   }
 }
 
@@ -435,41 +478,14 @@ function playerSlimeCollide () {
   //console.log(healthWidth);
 }
 
-
-
-var onGround = true; 
-var stage1song;
-var cursors;
-var player1;
-var platforms;
-var bgBuildings2;
-var bgBuildings1;
-var scoreTitle;
-var scoreTime = 0;
-var scoreSystem;
-
-var follower;
-var path;
-var graphics;
-var zoneTriangle1;
-var zoneTriangle2;
-var metroNote;
-var colorFill;
+if (Number(pageHighScore) < Number(finalScore)) {
+  pageHighScore = finalScore;
+  console.log(finalScore);
+}
 
 
 
-var healthBarBase;
-var healthBar;
-var healthWidth = 250;
-var healthBarSystem;
+console.log(pageHighScore);
 
-var antiHold = true;
-var zoneColor = 0xcf1692;
-var beatTimeColor;
 
-var slimes;
-var mySlime1;
-var mySlime2;
-var mySlime3;
-var mySlime4;
-var mySlime5;
+
