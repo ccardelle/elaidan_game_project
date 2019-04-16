@@ -7,13 +7,13 @@ class Stage1 extends Phaser.Scene {
   preload () {
       
 
-      this.load.image('stage1', './assets/bg-1.png')
-      this.load.image( 'buildings', './assets/bg-3.png')
-      this.load.audio('stage1song', ['./assets/songs/Fault - Medium.mp3']);
-      this.load.spritesheet('gello', './assets/gello.png',{frameWidth: 16, frameHeight: 16});
-      this.load.spritesheet('player1sprite' , './assets/blue.png',{frameWidth: 16, frameHeight: 16});
-      this.load.spritesheet('ground' , './assets/tiles.png',{frameWidth: 400, frameHeight: 200});
-      this.load.image('spark', './assets/fire.png');
+      this.load.image('stage1', 'assets/bg-1.png')
+      this.load.image( 'buildings', 'assets/bg-3.png')
+      this.load.audio('stage1song', ['assets/songs/Fault - Medium.mp3']);
+      this.load.spritesheet('gello', 'assets/gello.png',{frameWidth: 16, frameHeight: 16});
+      this.load.spritesheet('player1sprite' , 'assets/blue.png',{frameWidth: 16, frameHeight: 16});
+      this.load.spritesheet('ground' , 'assets/tiles.png',{frameWidth: 400, frameHeight: 200});
+      this.load.image('spark', 'assets/fire.png');
   }
 
 
@@ -131,19 +131,7 @@ class Stage1 extends Phaser.Scene {
     slimes.enableBody = true;
     
     
-    // for (var i = 0; i < 5; i++) {
-    //   var slime = slimes.create(500 + (i * 80), Math.floor(Math.random() * 400), 'gello');
-    //           slime.body.gravity.y = 400;
-    //           slime.body.bounce.y = .8;
-    //           slime.body.collideWorldBounds = true;
-    //           slime.anims.play('idle', true);
-    //           slime.body.velocity.x =-150;
-    //           slime.setScale('1.7');
-    //           slime.flipX = true;
-              
-              
-
-    //   }
+    
             
       
      mySlime1 = slimes.create(500, 250, 'gello');
@@ -183,6 +171,16 @@ class Stage1 extends Phaser.Scene {
      mySlime4.setScale('1.7');
      mySlime4.flipX = true;
      mySlime4.syncBounds = true;
+
+     mySlime5 = slimes.create(500, 250, 'gello');
+     mySlime5.body.setGravity(200,400);
+     mySlime5.body.bounce.y = .8;
+     mySlime5.body.collideWorldBounds = true;
+     mySlime5.anims.play('idle', true);
+     mySlime5.body.velocity.x =-150;
+     mySlime5.setScale('1.7');
+     mySlime5.flipX = true;
+     mySlime5.syncBounds = true;
 
      
 // Collisions
@@ -324,8 +322,8 @@ class Stage1 extends Phaser.Scene {
     healthBar.fillRect(10, 10, healthWidth, 24);
     
 
+  // Checks health to end the game.
 
-console.log(healthWidth);
     if (healthWidth <= 0) {
       stage1song.stop();
       healthWidth = 250;
@@ -337,7 +335,7 @@ console.log(healthWidth);
       
     }
 
-    if (mySlime1.x <= 14)
+    if (mySlime1.x <= 13.8)
     {
       mySlime1.setPosition(Math.floor(Math.random() * 780), 10);
       mySlime1.setVelocityX(-Math.floor(Math.random(300) * 500))
@@ -348,7 +346,7 @@ console.log(healthWidth);
     }
   
 
-  if (mySlime2.x <= 14)
+  if (mySlime2.x <= 13.8)
   {
     mySlime2.setPosition(Math.floor(Math.random() * 780), 10);
     mySlime2.setVelocityX(-Math.floor(Math.random(300) * 500))
@@ -359,7 +357,7 @@ console.log(healthWidth);
     mySlime2.setVelocityX(-Math.floor(Math.random(300) * 500));
 
   }
-  if (mySlime3.x <= 14)
+  if (mySlime3.x <= 13.8)
     {
       mySlime3.setPosition(Math.floor(Math.random() * 780), 10);
       mySlime3.setVelocityX(-Math.floor(Math.random(300) * 500))
@@ -369,7 +367,7 @@ console.log(healthWidth);
     mySlime3.setVelocityX(-Math.floor(Math.random(300) * 500));
   
   } 
-  if (mySlime4.x <= 14)
+  if (mySlime4.x <= 13.8)
     {
       mySlime4.setPosition(Math.floor(Math.random() * 780), 10);
       mySlime4.setVelocityX(-Math.floor(Math.random(300) * 500))
@@ -379,6 +377,14 @@ console.log(healthWidth);
     mySlime4.setVelocityX(-Math.floor(Math.random(300) * 500));
   
   }
+  if (mySlime5.x <= 13.8)
+  {
+    mySlime5.setPosition(Math.floor(Math.random() * 780), 10);
+    mySlime5.setVelocityX(-Math.floor(Math.random(300) * 500))
+ 
+  } else if (mySlime5.x >= 785) {
+  mySlime5.setPosition(Math.floor(Math.random() * 780), 10);
+  mySlime5.setVelocityX(-Math.floor(Math.random(300) * 500));
   
   if ( mySlime1.velocityX <= 100) {
     mySlime1.setVelocityX(200);
@@ -399,7 +405,7 @@ console.log(healthWidth);
     mySlime3.setVelocityX(200);
 
   }
-
+  }
   
 
   // setInterval(function () {healthWidth -=10; healthBar.clear()}, 2000);
@@ -424,7 +430,7 @@ console.log(healthWidth);
 
 function playerSlimeCollide () {
   healthBar.clear();
-  setTimeout(healthWidth -= 20, 1000);
+  setTimeout(healthWidth -= 30, 1000);
 
   //console.log(healthWidth);
 }
@@ -466,3 +472,4 @@ var mySlime1;
 var mySlime2;
 var mySlime3;
 var mySlime4;
+var mySlime5;

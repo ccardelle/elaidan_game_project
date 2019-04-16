@@ -23,7 +23,7 @@
         canvas {
             
             display: flex;
-            margin: 20vh 25%;
+            margin: 10vh 25%;
             align-self: center;
             border: 10px black solid;
             order:0;
@@ -41,7 +41,7 @@
 
         .list li {
             display: flex;
-            display:inline;
+            display:inline-block;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             color: cyan;
             flex-direction: row;
@@ -52,24 +52,24 @@
         }
   </style>
   
-    <script type="text/javascript" src="/js/phaser.min.js"></script>
+    <script type="text/javascript" src="js/phaser.min.js"></script>
 </head>
 <body>
     
 <div style="font-family:font1; position:absolute; left:-1000px; visibility:hidden;">.</div>
 
 
-    <script type="text/javascript" src="./js/stage1.js"></script>
-    <script type="text/javascript" src="./js/BasicButton.js"></script>
-    <script type="text/javascript" src="./js/menu.js"></script>
-    <script type="text/javascript" src="./js/game.js"></script>
+    <script type="text/javascript" src="js/stage1.js"></script>
+    <script type="text/javascript" src="js/BasicButton.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
     
     <div class="instructions">
-        <h3>HOW TO PLAY</h3>
+        <h3>HOW TO PLAY:</h3>
         <section> <ul class="list">
             <li> Move by using the arrow keys.</li>
-            <li> Avoid falling enemies, they hurt.</li>
-            <li> Hitting [space] triggers a heal if timed to the beat </li>
+            <li> Avoid the falling aliens, they hurt.</li>
+            <li> Hitting [SPACE] triggers a heal if timed to the beat </li>
             
 
         </ul></section>
