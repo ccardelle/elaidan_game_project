@@ -68,8 +68,8 @@ class Stage1 extends Phaser.Scene {
 
     //Creates score timer
 
-    scoreSystem = setInterval(function () {scoreTime += 5}, 458);
-    beatTimeColor = setInterval(function() {zoneColor = 0x7CFC00; setTimeout(function (){zoneColor = 0xcf1692}, 250)}, 458
+    scoreSystem = setInterval(function () {scoreTime += 5}, 457.5);
+    beatTimeColor = setInterval(function() {zoneColor = 0x7CFC00; setTimeout(function (){zoneColor = 0xcf1692}, 250)}, 457.5
     );
     
 
@@ -112,7 +112,7 @@ class Stage1 extends Phaser.Scene {
     //Stage1  Music and Sounds
     stage1song = this.sound.add('stage1song');
     stage1song.volume = .2;
-    setTimeout(function() {stage1song.play()}, 458);
+    setTimeout(function() {stage1song.play()}, 0);
 
     hit = this.sound.add('hit');
     hit.volume = .2;
@@ -261,7 +261,7 @@ class Stage1 extends Phaser.Scene {
           targets: follower,
           t: 1,
           ease: 'Linear',
-          duration: 456,
+          duration: 457.5,
           yoyo: true,
           repeat: -1
       });
@@ -312,6 +312,7 @@ class Stage1 extends Phaser.Scene {
         player1.anims.play('right', true);
         healthBar.clear();
         jump.play();
+        scoreTime += 5;
         
       }
       onGround = false; 
@@ -323,11 +324,16 @@ class Stage1 extends Phaser.Scene {
       setTimeout(healthWidth += 10, 20);
       healthBar.clear();
       antiHold = false;
+      scoreTime += 5;
       console.log(healthWidth);
+
+    } else if (zoneColor === 0x7CFC00 && healthWidth + 10 >= 250 ) { 
+      antiHold = false;
+      scoreTime += 5;
 
     } else {
       healthBar.clear();
-      healthWidth -= 5;
+      //healthWidth -= 15;
       antiHold = false;
     }
   }
@@ -372,22 +378,21 @@ class Stage1 extends Phaser.Scene {
 
   // Checks health to end the game.
 
-    // if (healthWidth <= 0) {
-    //   stage1song.stop();
-    //   healthWidth = 250;
-    //   finalScore = scoreTime; 
-    //   clearInterval(scoreSystem);
-    //   clearInterval(beatTimeColor);
-    //   console.log(finalScore + "HEY");
-    //   this.scene.stop("Stage1");
-    //   this.scene.start("Menu");
-    //   if (Number(pageHighScore) < Number(finalScore)) {
-    //     document.getElementsByClassName("hiScoreInt")[0].innerHTML = finalScore;
-    //     console.log(finalScore);
-    //   }
+    if (healthWidth <= 0) {
+      stage1song.stop();
+      healthWidth = 250;
+      finalScore = scoreTime; 
+      clearInterval(scoreSystem);
+      clearInterval(beatTimeColor);
+      this.scene.stop("Stage1");
+      this.scene.start("GameOver");
+      if (Number(pageHighScore) < Number(finalScore)) {
+        document.getElementsByClassName("hiScoreInt")[0].innerHTML = finalScore;
+        console.log(finalScore);
+      }
       
       
-    // }
+    }
 
     if (mySlime1.x <= 13.8)
     {
@@ -484,7 +489,7 @@ class Stage1 extends Phaser.Scene {
 
 function playerSlimeCollide () {
   healthBar.clear();
-  setTimeout(healthWidth -= 30, 1000);
+  setTimeout(healthWidth -= 20, 1000);
   hit.play();
   //console.log(healthWidth);
 }

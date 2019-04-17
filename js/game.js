@@ -13,7 +13,7 @@
             debug: false,
         }
      },
-     scene: [Menu, Stage1]
+     scene: [Menu, Stage1, GameOver]
     };
 
 var game = new Phaser.Game(config);
