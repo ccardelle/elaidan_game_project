@@ -1,5 +1,7 @@
 var onGround = true; 
 var stage1song;
+var hit;
+var jump;
 var cursors;
 var player1;
 var platforms;
@@ -46,7 +48,9 @@ class Stage1 extends Phaser.Scene {
 
       this.load.image('stage1', 'assets/bg-1.png')
       this.load.image( 'buildings', 'assets/bg-3.png')
-      this.load.audio('stage1song', ['assets/songs/fault_medium.mp3']);
+      this.load.audio('stage1song', ['assets/songs/tfat.mp3']);
+      this.load.audio('hit', ['assets/songs/hit.wav']);
+      this.load.audio('jump', ['assets/songs/jump.wav']);
       this.load.spritesheet('gello', 'assets/gello.png',{frameWidth: 16, frameHeight: 16});
       this.load.spritesheet('player1sprite' , 'assets/blue.png',{frameWidth: 16, frameHeight: 16});
       this.load.spritesheet('ground' , 'assets/tiles.png',{frameWidth: 400, frameHeight: 200});
@@ -64,8 +68,9 @@ class Stage1 extends Phaser.Scene {
 
     //Creates score timer
 
-    scoreSystem = setInterval(function () {scoreTime += 5}, 461);
-    beatTimeColor = setInterval(function() {zoneColor = 0x7CFC00; setTimeout(function (){zoneColor = 0xcf1692}, 250)}, 461 );
+    scoreSystem = setInterval(function () {scoreTime += 5}, 458);
+    beatTimeColor = setInterval(function() {zoneColor = 0x7CFC00; setTimeout(function (){zoneColor = 0xcf1692}, 250)}, 458
+    );
     
 
     var newBg = this.add.sprite(400, 300, 'stage1');
@@ -104,10 +109,16 @@ class Stage1 extends Phaser.Scene {
   
     
 
-    //Stage1  Music
+    //Stage1  Music and Sounds
     stage1song = this.sound.add('stage1song');
     stage1song.volume = .2;
-    setTimeout(function() {stage1song.play()}, 461.5);
+    setTimeout(function() {stage1song.play()}, 458);
+
+    hit = this.sound.add('hit');
+    hit.volume = .2;
+
+    jump = this.sound.add('jump');
+    jump.volume = .1;
 
     
 
@@ -220,7 +231,7 @@ class Stage1 extends Phaser.Scene {
      mySlime5.syncBounds = true;
 
      
-// Collisions
+    // Collisions
 
 
     this.physics.add.collider(slimes, slimes);
@@ -238,20 +249,19 @@ class Stage1 extends Phaser.Scene {
 
       
       var line1 = new Phaser.Curves.Line([ 0, 550, 800, 550 ]);
-      //var line2 = new Phaser.Curves.Line([ 200, 300, 600, 500 ]);
+      
 
       path = this.add.path();
 
       path = new Phaser.Curves.Path();
 
       path.add(line1);
-      //path.add(line2);
 
       this.tweens.add({
           targets: follower,
           t: 1,
           ease: 'Linear',
-          duration: 461.5,
+          duration: 456,
           yoyo: true,
           repeat: -1
       });
@@ -301,6 +311,7 @@ class Stage1 extends Phaser.Scene {
         player1.setVelocityY(-450);
         player1.anims.play('right', true);
         healthBar.clear();
+        jump.play();
         
       }
       onGround = false; 
@@ -361,22 +372,22 @@ class Stage1 extends Phaser.Scene {
 
   // Checks health to end the game.
 
-    if (healthWidth <= 0) {
-      stage1song.stop();
-      healthWidth = 250;
-      finalScore = scoreTime; 
-      clearInterval(scoreSystem);
-      clearInterval(beatTimeColor);
-      console.log(finalScore + "HEY");
-      this.scene.stop("Stage1");
-      this.scene.start("Menu");
-      if (Number(pageHighScore) < Number(finalScore)) {
-        document.getElementsByClassName("hiScoreInt")[0].innerHTML = finalScore;
-        console.log(finalScore);
-      }
-      ;
+    // if (healthWidth <= 0) {
+    //   stage1song.stop();
+    //   healthWidth = 250;
+    //   finalScore = scoreTime; 
+    //   clearInterval(scoreSystem);
+    //   clearInterval(beatTimeColor);
+    //   console.log(finalScore + "HEY");
+    //   this.scene.stop("Stage1");
+    //   this.scene.start("Menu");
+    //   if (Number(pageHighScore) < Number(finalScore)) {
+    //     document.getElementsByClassName("hiScoreInt")[0].innerHTML = finalScore;
+    //     console.log(finalScore);
+    //   }
       
-    }
+      
+    // }
 
     if (mySlime1.x <= 13.8)
     {
@@ -474,7 +485,7 @@ class Stage1 extends Phaser.Scene {
 function playerSlimeCollide () {
   healthBar.clear();
   setTimeout(healthWidth -= 30, 1000);
-
+  hit.play();
   //console.log(healthWidth);
 }
 
