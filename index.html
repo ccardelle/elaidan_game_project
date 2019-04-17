@@ -23,7 +23,7 @@
         canvas {
             
             display: flex;
-            margin: 10vh 34%;
+            margin: 10vh 25vw;
             align-content: center;
             justify-content: center;
             border: 8px black solid;
@@ -38,31 +38,61 @@
             order: 2;
             font-size: 42px;
             color:cyan;
+            position: absolute;
+            bottom: 10px;
+            padding-right: 0px;
+            visibility: visible;
             
 
         }
-        
-        .hiscore {
-            display: flex;
+        .ins-h3 {
+
+            display:inline;
             justify-content: center;
-            align-content: space-between;
+            position: absolute;
+            bottom: 120px;
+            left: 43vw;
+            color:cyan;
+            align-content: center;
+            font-size: 38px;
+            padding-top: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+           
+
+        }
+        
+        .hiscore{
+            display: flex;
+            height: 200vh;
+            justify-content: center;
+            align-content: center;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             font-size: 28px;
             order: 2;
             color:cyan;
-
+            position: absolute;
+            top: 0px;
+            left: 42vw;
+            
         }
-        .list li {
+
+        .list > li{
             display: flex;
             display:inline-block;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             color: cyan;
+            justify-content: center;
+            align-content: center;
             flex-direction: row;
-            font-style: italic;
-            align-content: space-between;
+            font-weight: bolder;
             font-size: 24px;
-            padding-right: 20px;
-            padding-top: 20px
+            padding-top: 10px;
+            width: auto;
+            padding-left: 10vw;
+           
+        
+
 
         }
   </style>
@@ -72,12 +102,13 @@
 <body>
     
 <div style="font-family:font1; position:absolute; left:-1000px; visibility:hidden;">.</div>
+<h3 class="ins-h3">HOW TO PLAY:</h3>
 <div class="instructions">
-    <h3>HOW TO PLAY:</h3>
+    <!-- <h3 class="ins-h3">HOW TO PLAY:</h3> -->
     <section> <ul class="list">
         <li> Move by using the arrow keys</li>
-        <li> Avoid the falling aliens, they hurt</li>
-        <li> Hitting [SPACE] triggers a heal if timed to the beat</li>
+        <li> Avoid the falling aliens! They hurt</li>
+        <li> Hitting [SPACE] triggers a heal, if timed to the beat</li>
         
 
     </ul></section>

@@ -1,4 +1,5 @@
 var onGround = true; 
+var newBg;
 var stage1song;
 var hit;
 var jump;
@@ -18,7 +19,7 @@ var zoneTriangle1;
 var zoneTriangle2;
 var metroNote;
 var colorFill;
-var pageHighScore = document.getElementsByClassName("hiScoreInt")[0].innerHTML;
+var pageHighScore; //= document.getElementsByClassName("hiScoreInt")[0].innerHTML;
 
 
 var healthBarBase;
@@ -73,8 +74,8 @@ class Stage1 extends Phaser.Scene {
     );
     
 
-    var newBg = this.add.sprite(400, 300, 'stage1');
-    newBg.displayWidth = 800;
+    newBg = this.add.sprite(400, 300, 'stage1');
+    newBg.displayWidth = 1000;
     newBg.displayHeight = 600;
     
     //particles test
@@ -127,7 +128,7 @@ class Stage1 extends Phaser.Scene {
     // Ground
     platforms = this.physics.add.staticGroup();
 
-    platforms.create(250, 825, 'ground').setScale(3.3).refreshBody();
+    platforms.create(250, 825, 'ground').setScale(3.3).setTint(1).refreshBody();
 
    // Zone Triangles
     zoneTriangle1 = this.add.graphics();
@@ -291,6 +292,11 @@ class Stage1 extends Phaser.Scene {
     player1.setVelocityX(-250);
     player1.flipX = true;
     player1.anims.play('left', true);
+    if (player1.body.x > 0 && player1.body.x < 771) {
+    bgBuildings2.x -=.3
+    bgBuildings1.x -= .5;
+    newBg.x += .4;
+    }
 }   
     else
 {
@@ -303,6 +309,12 @@ class Stage1 extends Phaser.Scene {
       player1.setVelocityX(250);
       player1.flipX = false;
       player1.anims.play('right', true);
+      if (player1.body.x > 0 && player1.body.x < 771) {
+        bgBuildings2.x +=.3;
+        bgBuildings1.x += .5;
+        newBg.x -= .4;
+        }
+
     }
     
     if (cursors.up.isDown)
@@ -386,6 +398,7 @@ class Stage1 extends Phaser.Scene {
       clearInterval(beatTimeColor);
       this.scene.stop("Stage1");
       this.scene.start("GameOver");
+      pageHighScore = document.getElementsByClassName("hiScoreInt")[0].innerHTML;
       if (Number(pageHighScore) < Number(finalScore)) {
         document.getElementsByClassName("hiScoreInt")[0].innerHTML = finalScore;
         console.log(finalScore);
@@ -486,7 +499,6 @@ class Stage1 extends Phaser.Scene {
 
 
 
-
 function playerSlimeCollide () {
   healthBar.clear();
   setTimeout(healthWidth -= 20, 1000);
@@ -494,10 +506,10 @@ function playerSlimeCollide () {
   //console.log(healthWidth);
 }
 
-if (Number(pageHighScore) < Number(finalScore)) {
-  pageHighScore = finalScore;
-  console.log(finalScore);
-}
+// if (Number(pageHighScore) < Number(finalScore)) {
+//   pageHighScore = finalScore;
+//   console.log(finalScore);
+// }
 
 
 

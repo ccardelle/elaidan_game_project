@@ -1,3 +1,17 @@
+var bump = setInterval(titleDance, 457.8);
+//clearInterval(bump);
+
+
+
+
+
+var hsv;
+var i = 0;
+var title;
+var buttonText;
+var button;
+var menuSong;
+
 class Menu extends Phaser.Scene {
     constructor() {
         super ({key:"Menu"});
@@ -103,29 +117,24 @@ let _this = this;
 
 } 
 
-var bump = setInterval(titleDance, 457.8);
-//clearInterval(bump);
 
-
-
-
-
-var hsv;
-var i = 0;
-var title;
-var buttonText;
-var button;
-var menuSong;
 
 
 function titleDance () {
 
+    try {
+        
     setTimeout(function(){title.setScale(1.3); title.setX(65)}, 0);
     setTimeout(function(){title.setScale(1.2); title.setX(85)}, 50);
     setTimeout(function(){title.setScale(1.15); title.setX(95)}, 100);
     setTimeout(function(){title.setScale(1.1); title.setX(120)}, 125);
     setTimeout(function(){title.setScale(1); title.setX(140)}, 150);
     
-
-    
     }
+    catch (e){
+
+    }
+    finally {
+        
+    }
+}

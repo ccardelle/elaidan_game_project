@@ -1,3 +1,12 @@
+
+var hsv;
+var i = 0;
+var gameOvertitle;
+var buttonText;
+var button;
+var gameover_song;
+var finalScoreText;
+
 class GameOver extends Phaser.Scene {
     constructor() {
         super ({key:"GameOver"});
@@ -104,30 +113,37 @@ class GameOver extends Phaser.Scene {
     
 
 } 
-
-var bump = setInterval(titleDance, 544);
+try {
+var bump = setInterval(titleDanceGameOver, 544);
 //clearInterval(bump);
+}
+catch (e) {
+    
+}
+
+finally {
+
+}
 
 
 
 
+function titleDanceGameOver () {
 
-var hsv;
-var i = 0;
-var gameOvertitle;
-var buttonText;
-var button;
-var gameover_song;
-var finalScoreText;
-
-function titleDance () {
+    try {
 
     setTimeout(function(){gameOvertitle.setScale(1.3); gameOvertitle.setX(35)}, 0);
     setTimeout(function(){gameOvertitle.setScale(1.2); gameOvertitle.setX(60)}, 100);
     setTimeout(function(){gameOvertitle.setScale(1.15); gameOvertitle.setX(80)}, 120);
     setTimeout(function(){gameOvertitle.setScale(1.1); gameOvertitle.setX(100)}, 140);
     setTimeout(function(){gameOvertitle.setScale(1); gameOvertitle.setX(110)}, 175);
-    
+    }
 
+    catch (e) {
+
+    }
+    finally  {
+
+    }
     
     }
