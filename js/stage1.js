@@ -69,8 +69,8 @@ class Stage1 extends Phaser.Scene {
 
     //Creates score timer
 
-    scoreSystem = setInterval(function () {scoreTime += 5}, 458);
-    beatTimeColor = setInterval(function() {zoneColor = 0x7CFC00; setTimeout(function (){zoneColor = 0xcf1692}, 250)}, 458
+    scoreSystem = setInterval(function () {scoreTime += 5}, 458.015);
+    beatTimeColor = setInterval(function() {zoneColor = 0x7CFC00; setTimeout(function (){zoneColor = 0xcf1692}, 250)}, 458.015
     );
     
 
@@ -262,7 +262,7 @@ class Stage1 extends Phaser.Scene {
           targets: follower,
           t: 1,
           ease: 'Linear',
-          duration: 458,
+          duration: 458.015,
           yoyo: true,
           repeat: -1
       });
