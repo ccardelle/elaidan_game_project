@@ -1,131 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Elaidan</title>
-    <style media='screen' type='text/css'>
-        @font-face {
-          font-family: font1;
-          src: url(assets/fonts/Retronoid.ttf);
-          font-weight:400;
-          font-weight:normal;
-        }
-        body {
+    <style media="screen" type="text/css">
+      @font-face {
+        font-family: font1;
+        src: url(assets/fonts/Retronoid.ttf);
+        font-weight: 400;
+        font-weight: normal;
+      }
+      body {
         /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#020101+23,020101+23,ff0aad+65,926ef4+91 */
-            background: rgb(2,1,1); /* Old browsers */
-            background: -moz-linear-gradient(top, rgba(2,1,1,1) 23%, rgba(2,1,1,1) 23%, #cf1692 45%, rgba(2,1,1,1) 91%); /* FF3.6-15 */
-            background: -webkit-linear-gradient(top, rgba(2,1,1,1) 23%,rgba(2,1,1,1) 23%,#cf1692 45%,rgba(2,1,1,1) 91%); /* Chrome10-25,Safari5.1-6 */
-            background: linear-gradient(to bottom, rgba(2,1,1,1) 23%,rgba(2,1,1,1) 23%,#cf1692 45%,rgba(2,1,1,1) 91%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020101', endColorstr='#926ef4',GradientType=0 ); /* IE6-9 */
-        }
-        canvas {
-            
-            display: flex;
-            margin: 8vh 25vw;
-            align-content: center;
-            justify-content: center;
-            border: 8px black solid;
-            order:0;
-             }
+        background: rgb(2, 1, 1); /* Old browsers */
+        background: -moz-linear-gradient(
+          top,
+          rgba(2, 1, 1, 1) 23%,
+          rgba(2, 1, 1, 1) 23%,
+          #cf1692 45%,
+          rgba(2, 1, 1, 1) 91%
+        ); /* FF3.6-15 */
+        background: -webkit-linear-gradient(
+          top,
+          rgba(2, 1, 1, 1) 23%,
+          rgba(2, 1, 1, 1) 23%,
+          #cf1692 45%,
+          rgba(2, 1, 1, 1) 91%
+        ); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(
+          to bottom,
+          rgba(2, 1, 1, 1) 23%,
+          rgba(2, 1, 1, 1) 23%,
+          #cf1692 45%,
+          rgba(2, 1, 1, 1) 91%
+        ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020101', endColorstr='#926ef4',GradientType=0 ); /* IE6-9 */
+      }
 
-        .instructions {
-            display: flex;
-            justify-content: center;
-            align-content: space-between;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            order: 2;
-            font-size: 42px;
-            color:cyan;
-            position: absolute;
-            bottom: 0px;
-            padding-right: 0px;
-            visibility: visible;
-            
+      .main-div {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-content: center;
+      }
+      #canvas-window {
+        display: flex;
+        justify-content: center;
+        width: 8100vh;
+      }
 
-        }
-        .ins-h3 {
+      canvas {
+        border: 8px black solid;
+      }
 
-            display:inline;
-            justify-content: center;
-            position: relative;
-            bottom: 120px;
-            left: 43vw;
-            color:cyan;
-            align-content: center;
-            font-size: 38px;
-            padding-top: 20px;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      .instructions {
+        display: flex;
+        justify-content: center;
+        align-content: space-between;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        order: 2;
+        font-size: 42px;
+        color: cyan;
+        position: absolute;
+        bottom: 0px;
+        padding-right: 0px;
+        visibility: visible;
+      }
+      .ins-h3 {
+        display: inline;
+        justify-content: center;
+        position: relative;
+        bottom: 120px;
+        left: 43vw;
+        color: cyan;
+        align-content: center;
+        font-size: 38px;
+        padding-top: 20px;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
 
-           
+      .hiscore {
+        display: flex;
+        height: 200px;
+        justify-content: center;
+        align-content: center;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        font-size: 28px;
+        order: 2;
+        color: cyan;
+        position: absolute;
+        top: 0px;
+        left: 42vw;
+      }
 
-        }
-        
-        .hiscore{
-            display: flex;
-            height: 200px;
-            justify-content: center;
-            align-content: center;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            font-size: 28px;
-            order: 2;
-            color:cyan;
-            position: absolute;
-            top: 0px;
-            left: 42vw;
-            
-        }
+      .list {
+        display: flex;
+        display: inline-block;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        color: cyan;
+        justify-content: center;
+        align-content: center;
+        flex-direction: row;
+        font-weight: bolder;
+        font-size: 24px;
+        padding-top: 100px;
+        width: auto;
+        padding-left: 10vw;
+        position: relative;
+      }
+    </style>
 
-        .list > li{
-            display: flex;
-            display:inline-block;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            color: cyan;
-            justify-content: center;
-            align-content: center;
-            flex-direction: row;
-            font-weight: bolder;
-            font-size: 24px;
-            padding-top: 100px;
-            width: auto;
-            padding-left: 10vw;
-            position: relative;
-        
-
-
-        }
-  </style>
-  
     <script type="text/javascript" src="js/phaser.min.js"></script>
-</head>
-<body>
-    
-<div style="font-family:font1; position:absolute; left:-1000px; visibility:hidden;">.</div>
-<h3 class="ins-h3">HOW TO PLAY:</h3>
-<div class="instructions">
-    <!-- <h3 class="ins-h3">HOW TO PLAY:</h3> -->
-    <section> <ul class="list">
-        <li> Move by using the arrow keys</li>
-        <li> Avoid the falling aliens! They hurt</li>
-        <li> Hitting [SPACE] triggers a heal, if timed to the beat</li>
-        
+  </head>
+  <body>
+    <div class="main-div">
+      <div
+        style="font-family:font1; position:absolute; left:-1000px; visibility:hidden;"
+      >
+        .
+      </div>
 
-    </ul></section>
+      <div id="canvas-window"></div>
+      <h3 class="ins-h3">HOW TO PLAY:</h3>
+      <div class="instructions">
+        <!-- <h3 class="ins-h3">HOW TO PLAY:</h3> -->
+        <section>
+          <ul class="list">
+            <li>Move by using the arrow keys</li>
+            <li>Avoid the falling aliens! They hurt</li>
+            <li>Hitting [SPACE] triggers a heal, if timed to the beat</li>
+          </ul>
+        </section>
+      </div>
+      <div class="hiscore">
+        <h1>HI-SCORE: <span class="hiScoreInt">0</span></h1>
+      </div>
 
-
-</div>
-<div class="hiscore">
-    <h1>HI-SCORE: <span class="hiScoreInt">0</span></h1>
-</div>
-
-    <script type="text/javascript" src="js/gameover.js"></script>
-    <script type="text/javascript" src="js/stage1.js"></script>
-    <script type="text/javascript" src="js/BasicButton.js"></script>
-    <script type="text/javascript" src="js/menu.js"></script>
-    <script type="text/javascript" src="js/game.js"></script>
-    
-    
-    
-</body>
+      <script type="text/javascript" src="js/gameover.js"></script>
+      <script type="text/javascript" src="js/stage1.js"></script>
+      <script type="text/javascript" src="js/BasicButton.js"></script>
+      <script type="text/javascript" src="js/menu.js"></script>
+      <script type="text/javascript" src="js/game.js"></script>
+    </div>
+  </body>
 </html>
