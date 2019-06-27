@@ -53,8 +53,8 @@
 
       #canvas-window {
         display: flex;
-        border: 8px black solid;
-        margin-top: 10vh;
+        border: 8px purple solid;
+        margin-top: 15vh;
       }
 
       .instructions {
@@ -64,6 +64,15 @@
         bottom: 0px;
         visibility: visible;
       }
+
+      .instructions-div {
+        background: purple;
+        border: 1px solid cyan;
+        border-radius: 20px;
+        padding: 10px;
+        margin-top: 5vh;
+      }
+
       .ins-h3 {
         display: inline;
         justify-content: center;
@@ -74,16 +83,17 @@
       }
 
       .hiscore {
-        display: flex;
-        height: 200px;
-        justify-content: center;
-        align-content: center;
         font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
         font-size: 28px;
         order: 2;
         color: cyan;
         position: absolute;
-        top: 0px;
+        top: 10px;
+        background: purple;
+        border: 1px solid cyan;
+        border-radius: 20px;
+        padding: 10px;
+        max-width: 40vh;
       }
 
       .list {
@@ -108,16 +118,18 @@
       </div>
 
       <div id="canvas-window"></div>
-      <h3 class="ins-h3">HOW TO PLAY:</h3>
-      <div class="instructions">
-        <!-- <h3 class="ins-h3">HOW TO PLAY:</h3> -->
-        <section>
-          <ul class="list">
-            <li>Move by using the arrow keys</li>
-            <li>Avoid the falling aliens! They hurt</li>
-            <li>Hitting [SPACE] triggers a heal, if timed to the beat</li>
-          </ul>
-        </section>
+      <div class="instructions-div">
+        <h3 class="ins-h3">HOW TO PLAY:</h3>
+        <div class="instructions">
+          <!-- <h3 class="ins-h3">HOW TO PLAY:</h3> -->
+          <section>
+            <ul class="list">
+              <li>Move by using the arrow keys</li>
+              <li>Avoid the falling aliens! They hurt</li>
+              <li>Hitting [SPACE] triggers a heal, if timed to the beat</li>
+            </ul>
+          </section>
+        </div>
       </div>
       <div class="hiscore">
         <h1>HI-SCORE: <span class="hiScoreInt">0</span></h1>
