@@ -13,6 +13,10 @@
         font-weight: normal;
       }
       body {
+        background: black;
+      }
+
+      .xbody {
         /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#020101+23,020101+23,ff0aad+65,926ef4+91 */
         background: rgb(2, 1, 1); /* Old browsers */
         background: -moz-linear-gradient(
@@ -42,42 +46,30 @@
       .main-div {
         display: flex;
         justify-content: center;
-        flex-direction: row;
-        align-content: center;
-      }
-      #canvas-window {
-        display: flex;
-        justify-content: center;
-        width: 8100vh;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
       }
 
-      canvas {
+      #canvas-window {
+        display: flex;
         border: 8px black solid;
+        margin-top: 10vh;
       }
 
       .instructions {
         display: flex;
-        justify-content: center;
-        align-content: space-between;
-        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-        order: 2;
         font-size: 42px;
         color: cyan;
-        position: absolute;
         bottom: 0px;
-        padding-right: 0px;
         visibility: visible;
       }
       .ins-h3 {
         display: inline;
         justify-content: center;
-        position: relative;
-        bottom: 120px;
-        left: 43vw;
         color: cyan;
         align-content: center;
         font-size: 38px;
-        padding-top: 20px;
         font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
       }
 
@@ -92,23 +84,16 @@
         color: cyan;
         position: absolute;
         top: 0px;
-        left: 42vw;
       }
 
       .list {
         display: flex;
-        display: inline-block;
+        flex-direction: column;
+        list-style-type: none;
         font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
         color: cyan;
-        justify-content: center;
-        align-content: center;
-        flex-direction: row;
         font-weight: bolder;
         font-size: 24px;
-        padding-top: 100px;
-        width: auto;
-        padding-left: 10vw;
-        position: relative;
       }
     </style>
 
